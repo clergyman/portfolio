@@ -12,7 +12,7 @@ The suite is designed to be runnable on a clean workstation without any service 
 ## What is in scope
 
 - Contract coverage against a local OpenAPI 3 document
-- Realistic domain fixtures for portfolios, transfers, orders, and valuation
+- Realistic domain setup helpers for portfolios, transfers, orders, and valuation
 - Offline HTTP interaction testing using `requests` plus `responses`
 - Allure 3 metadata, categories, environment, executor, and attachment support
 
@@ -23,9 +23,7 @@ openapi/
   user-portfolio.yaml
 
 tests/
-  conftest.py
   helpers/
-  fixtures/
   contracts/
   api/
   integration/
@@ -85,6 +83,24 @@ Run only modeled portfolio coverage:
 pytest -m "contract or api or integration or e2e"
 ```
 
+Run only the longer end-to-end scenarios:
+
+```bash
+pytest -m slow
+```
+
+Run the modeled performance checks:
+
+```bash
+pytest -m performance
+```
+
+Run the intentionally flaky samples:
+
+```bash
+pytest -m flaky
+```
+
 Run only Petstore-shaped smoke scenarios:
 
 ```bash
@@ -102,6 +118,7 @@ RUN_LIVE_SANDBOX=1 pytest -m live
 - `PORTFOLIO_API_BASE_URL`: defaults to `https://portfolio-api.sandbox.allyre.example`
 - `PUBLIC_SANDBOX_BASE_URL`: defaults to `https://petstore3.swagger.io/api/v3`
 - `RUN_LIVE_SANDBOX`: set to `1` to execute real outbound sandbox checks
+- `ENABLE_RANDOM_FLAKES`: defaults to `1`; set to `0` to disable intentional random flake failures
 - `TEST_ENVIRONMENT`: defaults to `local`
 - `ALLURE_RESULTS_DIR`: defaults to `allure-results`
 
