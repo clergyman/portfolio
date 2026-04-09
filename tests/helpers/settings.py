@@ -11,7 +11,6 @@ class TestSettings:
     portfolio_api_base_url: str
     public_sandbox_base_url: str
     test_environment: str
-    allure_results_dir: Path
 
 
 def load_settings(project_root: Path) -> TestSettings:
@@ -24,5 +23,4 @@ def load_settings(project_root: Path) -> TestSettings:
             "PUBLIC_SANDBOX_BASE_URL", "https://petstore3.swagger.io/api/v3"
         ).rstrip("/"),
         test_environment=getenv("TEST_ENVIRONMENT", "local"),
-        allure_results_dir=Path(getenv("ALLURE_RESULTS_DIR", "allure-results")),
     )

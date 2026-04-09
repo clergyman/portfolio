@@ -5,11 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "portfolio-api-test-pack"
 version = "0.1.0"
-description = "Realistic pytest and Allure API test pack scaffold"
+description = "Realistic pytest API test pack scaffold"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "allure-pytest>=2.15.3",
   "jsonschema>=4.23.0",
   "PyYAML>=6.0.2",
   "pytest>=8.3.5",

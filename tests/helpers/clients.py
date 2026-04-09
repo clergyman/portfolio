@@ -2,14 +2,23 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from typing import Any
+from uuid import uuid4
 
-from tests.helpers.allure_http import AllureLoggingSession, build_default_headers
+import requests
+
+
+def build_default_headers(correlation_id: str | None = None) -> dict[str, str]:
+    return {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "X-Correlation-ID": correlation_id or str(uuid4()),
+    }
 
 
 @dataclass
 class BaseApiClient:
     base_url: str
-    session: AllureLoggingSession
+    session: requests.Session
 
     def get(self, path: str, **kwargs: Any):
         return self.session.get(f"{self.base_url}{path}", timeout=15, **kwargs)
@@ -56,8 +65,10 @@ class PetstoreApiClient(BaseApiClient):
         return self.get(f"/store/order/{order_id}")
 
 
-def build_session(token: str | None = None, correlation_id: str | None = None) -> AllureLoggingSession:
+def build_session(token: str | None = None, correlation_id: str | None = None) -> requests.Session:
     headers = build_default_headers(correlation_id=correlation_id)
+    session = requests.Session()
+    session.headers.update(headers)
     if token:
-        headers["Authorization"] = f"Bearer {token}"
-    return AllureLoggingSession(default_headers=headers)
+        session.headers["Authorization"] = f"Bearer {token}"
+    return session
