@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Assertion failures",
+    "matchedStatuses": ["failed"],
+    "messageRegex": ".*AssertionError.*"
+  },
+  {
+    "name": "Connection failures",
+    "matchedStatuses": ["broken"],
+    "messageRegex": ".*ConnectionError.*"
+  }
+]

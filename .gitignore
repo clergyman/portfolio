@@ -1,0 +1,46 @@
+# macOS
+.DS_Store
+
+# Python environments
+.venv/
+venv/
+.python-version
+
+# Python cache and tooling
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Packaging metadata
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+
+# Test artifacts
+allure-results/
+allure-report/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors
+.idea/
+.vscode/
+
+# Local scratch files
+*.tmp
+*.swp
+*.swo
