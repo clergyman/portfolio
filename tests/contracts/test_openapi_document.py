@@ -10,10 +10,11 @@ import pytest
 class TestOpenApiDocument:
     @allure.story("The contract document is structurally complete")
     def test_contract_has_required_top_level_sections(self, portfolio_openapi):
-        assert portfolio_openapi["openapi"].startswith("3.")
-        assert "info" in portfolio_openapi
-        assert "paths" in portfolio_openapi
-        assert "components" in portfolio_openapi
+        with allure.step("Check the top-level OpenAPI document structure"):
+            assert portfolio_openapi["openapi"].startswith("3.")
+            assert "info" in portfolio_openapi
+            assert "paths" in portfolio_openapi
+            assert "components" in portfolio_openapi
 
     @allure.story("Core portfolio endpoints are present in the contract")
     @pytest.mark.parametrize(
@@ -28,9 +29,11 @@ class TestOpenApiDocument:
         ],
     )
     def test_core_paths_exist(self, portfolio_paths, path: str):
-        assert path in portfolio_paths
+        with allure.step(f"Check that the contract contains {path}"):
+            assert path in portfolio_paths
 
     @allure.story("Response schemas are declared for success and business errors")
     def test_create_portfolio_responses_are_documented(self, portfolio_paths):
-        responses = portfolio_paths["/portfolios"]["post"]["responses"]
-        assert {"201", "400", "409"} <= set(responses)
+        with allure.step("Check that create portfolio responses are documented"):
+            responses = portfolio_paths["/portfolios"]["post"]["responses"]
+            assert {"201", "400", "409"} <= set(responses)
