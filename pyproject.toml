@@ -9,6 +9,7 @@ description = "Realistic pytest API test pack scaffold"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
+  "allure-pytest>=2.15.0",
   "jsonschema>=4.23.0",
   "PyYAML>=6.0.2",
   "pytest>=8.3.5",

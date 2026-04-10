@@ -8,12 +8,14 @@ The suite is designed to be runnable on a clean workstation without any service 
 - mocked HTTP API tests that still produce real request/response objects
 - Petstore-based smoke scenarios modeled on public Swagger endpoints
 - contract, API, integration, and end-to-end style layers
+- minimal Allure result generation without test annotations
 
 ## What is in scope
 
 - Contract coverage against a local OpenAPI 3 document
 - Realistic domain setup helpers for portfolios, transfers, orders, and valuation
 - Offline HTTP interaction testing using `requests` plus `responses`
+- Allure result generation through the `allure-pytest` plugin
 
 ## Project layout
 
@@ -22,14 +24,15 @@ openapi/
   user-portfolio.yaml
 
 tests/
-  conftest.py
   helpers/
-  fixtures/
   contracts/
   api/
   integration/
   e2e/
   public_sandbox/
+
+allurerc.mjs
+package.json
 ```
 
 ## Quick start
@@ -38,7 +41,24 @@ tests/
 python3 -m venv .venv
 source .venv/bin/activate
 pip3 install -e .
+npm install
 pytest
+```
+
+Pytest writes raw Allure results to `allure-results/`.
+
+## Allure
+
+Generate a local report from existing test results:
+
+```bash
+npx allure generate allure-results -o allure-report --clean
+```
+
+Open the generated report:
+
+```bash
+npx allure open allure-report
 ```
 
 ## Test selection

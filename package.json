@@ -1,0 +1,13 @@
+{
+  "name": "portfolio-api-test-pack",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Minimal Allure 3 CLI support for the portfolio API pytest suite",
+  "devDependencies": {
+    "allure": "^3.4.0"
+  },
+  "scripts": {
+    "allure:generate": "allure generate allure-results -o allure-report --clean",
+    "allure:open": "allure open allure-report"
+  }
+}
