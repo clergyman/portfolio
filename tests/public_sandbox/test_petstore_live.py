@@ -30,7 +30,7 @@ class TestSwaggerPetstoreSmoke:
             response = client.get_inventory()
 
         assert response.status_code == requests.codes.ok
-        assert isinstance(response.json(), dict)
+        assert isinstance(response.json(), list)
 
     def test_missing_order(self):
         client = petstore_api_client()
